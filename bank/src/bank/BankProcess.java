@@ -12,18 +12,25 @@ public class BankProcess {
 	private static final String STATEMENT_FILE = "statement.txt";
 
 	public static void main(String[] args) {
+		
 		String concepto;
 		double cantidad;
 		Operation operacion;
-		while(true) {
-			AccountMonitor accountMonitor = new AccountMonitor(null);
+		boolean ciclo = true;
+		
+		while(ciclo) {
+			AccountMonitor accountMonitor = new AccountMonitor(STATEMENT_FILE);
+			
 			operacion = ProcessInputUtils.readOperationMenu();
 			concepto = ProcessInputUtils.readConcept();
 			cantidad = ProcessInputUtils.readAmount();
 
 			accountMonitor.writeOperation(operacion, concepto, cantidad);
+			
 		if(!ProcessInputUtils.confirmAnotherOperation()) {
-			break;
+			
+			ciclo = false;
+			
 			}
 		}
 		System.out.println("Bank process finished.");

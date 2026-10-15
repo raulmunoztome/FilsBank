@@ -26,9 +26,8 @@ public class AccountMonitor {
         String fechaFormateada = ahora.format(FORMATTER);
         String operacionElegida ="";
         String lineaOperacion = "";
-        try (RandomAccessFile file = new RandomAccessFile(fileName, "rw");
-                FileChannel channel = file.getChannel();
-                FileLock lock = channel.lock()) {
+        try (RandomAccessFile file = new RandomAccessFile(fileName, "rw"); FileChannel channel = file.getChannel();
+             FileLock lock = channel.lock()) {
 
 
 	        	// Esto es lo que hace el append: va al final del archivo
@@ -51,8 +50,8 @@ public class AccountMonitor {
     
 
            } catch (Exception e) {
-               System.out.println(e.getMessage());
+        	   e.printStackTrace(); 
            } 
-		//Format the entry as: date time | operation sign amount currency | concept
+ 
 	}
 }
